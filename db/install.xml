@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="mod/pbl/db" VERSION="20101203" COMMENT="XMLDB file for Moodle mod/pbl"
+<XMLDB PATH="mod/pbl/db" VERSION="2018012805" COMMENT="XMLDB file for Moodle mod/pbl"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -21,6 +21,86 @@
       <INDEXES>
         <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
       </INDEXES>
+    </TABLE>
+    <TABLE NAME="pbl_team" COMMENT="Default comment for pbl, please edit me">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+            <FIELD NAME="pblid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="intro" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="General introduction of the pbl team"/>
+            <FIELD NAME="picture" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+            <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+            <FIELD NAME="remove" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+    </TABLE>
+    <TABLE NAME="pbl_team_members" COMMENT="Default comment for pbl, please edit me">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+            <FIELD NAME="teamid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+    </TABLE>
+    <TABLE NAME="pbl_project" COMMENT="Default comment for pbl, please edit me">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+            <FIELD NAME="pblid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="teamid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="intro" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="General introduction of the pbl team"/>
+            <FIELD NAME="problems" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="objectives" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="picture" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="file" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="type" TYPE="char" LENGTH="15" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="source" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+            <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+            <FIELD NAME="remove" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+    </TABLE>
+    <TABLE NAME="pbl_project_activity" COMMENT="Default comment for pbl, please edit me">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+            <FIELD NAME="projectid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="describe" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="General introduction of the pbl team"/>
+            <FIELD NAME="picture" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="file" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+            <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+            <FIELD NAME="remove" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+    </TABLE>
+    <TABLE NAME="pbl_project_activity_context" COMMENT="Default comment for pbl, please edit me">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+            <FIELD NAME="activityid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
+            <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+            <FIELD NAME="value" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="value field for moodle instances"/>
+            <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+            <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
     </TABLE>
   </TABLES>
 </XMLDB>

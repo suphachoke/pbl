@@ -68,7 +68,7 @@ function xmldb_pbl_upgrade($oldversion) {
      *
      * First example, some fields were added to install.xml on 2007/04/01
      */
-    if ($oldversion < 2007040100) {
+    if ($oldversion < 2018012803) {
 
         // Define field course to be added to pbl.
         $table = new xmldb_table('pbl');
@@ -100,13 +100,13 @@ function xmldb_pbl_upgrade($oldversion) {
 
         // Once we reach this point, we can store the new version and consider the module
         // ... upgraded to the version 2007040100 so the next time this block is skipped.
-        upgrade_mod_savepoint(true, 2007040100, 'pbl');
+        upgrade_mod_savepoint(true, 2018012803, 'pbl');
     }
 
     // Second example, some hours later, the same day 2007/04/01
     // ... two more fields and one index were added to install.xml (note the micro increment
     // ... "01" in the last two digits of the version).
-    if ($oldversion < 2007040101) {
+    if ($oldversion < 2018012803) {
 
         // Define field timecreated to be added to pbl.
         $table = new xmldb_table('pbl');
@@ -138,16 +138,16 @@ function xmldb_pbl_upgrade($oldversion) {
         }
 
         // Another save point reached.
-        upgrade_mod_savepoint(true, 2007040101, 'pbl');
+        upgrade_mod_savepoint(true, 2018012803, 'pbl');
     }
 
     // Third example, the next day, 2007/04/02 (with the trailing 00),
     // some actions were performed to install.php related with the module.
-    if ($oldversion < 2007040200) {
+    if ($oldversion < 2018012805) {
 
         // Insert code here to perform some actions (same as in install.php).
 
-        upgrade_mod_savepoint(true, 2007040200, 'pbl');
+        upgrade_mod_savepoint(true, 2018012805, 'pbl');
     }
 
     /*
