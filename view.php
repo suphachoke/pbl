@@ -596,7 +596,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
   $rw = $DB->get_records('pbl_team',array('pblid'=>$pbl->id,'userid'=>$USER->id,'remove'=>0));
   $rwtmp0 = $DB->get_records('pbl_team_members',array('userid'=>$USER->id));
   foreach($rwtmp0 as $r){
-    $rwtmp1 = $DB->get_records('pbl_team',array('teamid'=>$r->teamid));
+    $rwtmp1 = $DB->get_records('pbl_team',array('id'=>$r->teamid));
     $rw = array_merge($rw,$rwtmp1);
   }
   foreach($rw as $r){
