@@ -210,11 +210,16 @@ if($_REQUEST['act']=='nc'){//New Case studies
   }else if($formform = $mform->get_data()){
     //print_r($formform);
     $rwf = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->picture,0));
-    //print_r($rwf);
-    $furl = ($rwf->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf->contextid."/".$rwf->component."/".$rwf->filearea."/".$rwf->itemid."/".$rwf->filename:"";
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl = $CFG->wwwroot.'/pluginfile.php/'.$rwf->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf->filename;
     //echo $furl;
     $rwf2 = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->file,0));
-    $f2url = ($rwf2->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf2->contextid."/".$rwf2->component."/".$rwf2->filearea."/".$rwf2->itemid."/".$rwf2->filename:"";
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf2->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl = $CFG->wwwroot.'/pluginfile.php/'.$rwf2->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf2->filename;
     $case = new stdClass();
     $case->pblid = $pbl->id;
     $case->userid = $_REQUEST['uid'];
@@ -263,10 +268,16 @@ if($_REQUEST['act']=='nc'){//New Case studies
     //print_r($formform);
     $rwf = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->picture,0));
     //print_r($rwf);
-    $furl = ($rwf->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf->contextid."/".$rwf->component."/".$rwf->filearea."/".$rwf->itemid."/".$rwf->filename:"";
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl = $CFG->wwwroot.'/pluginfile.php/'.$rwf->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf->filename;
     //echo $furl;
     $rwf2 = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->file,0));
-    $f2url = ($rwf2->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf2->contextid."/".$rwf2->component."/".$rwf2->filearea."/".$rwf2->itemid."/".$rwf2->filename:"";
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf2->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl = $CFG->wwwroot.'/pluginfile.php/'.$rwf2->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf2->filename;
     $acta = new stdClass();
     $acta->projectid = $_REQUEST['pid'];
     if($_REQUEST['aid']==""){
@@ -328,11 +339,15 @@ if($_REQUEST['act']=='nc'){//New Case studies
   }else if($formform = $mform->get_data()){
     print_r($formform);
     $rwf = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->picture,0));
-    print_r($rwf);
-    $furl = ($rwf->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf->contextid."/".$rwf->component."/".$rwf->filearea."/".$rwf->itemid."/".$rwf->filename:"";
-    echo $furl;
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl = $CFG->wwwroot.'/pluginfile.php/'.$rwf->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf->filename;
     $rwf2 = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->file,0));
-    $f2url = ($rwf2->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf2->contextid."/".$rwf2->component."/".$rwf2->filearea."/".$rwf2->itemid."/".$rwf2->filename:"";
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf2->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl2 = $CFG->wwwroot.'/pluginfile.php/'.$rwf2->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf2->filename;
     $proj = new stdClass();
     $proj->pblid = $pbl->id;
     $proj->teamid = $_REQUEST['tid'];
@@ -380,8 +395,15 @@ if($_REQUEST['act']=='nc'){//New Case studies
     //print_r($formform);
     $rwf = $DB->get_record_sql('select * from {files} where itemid=? and filesize>?',array($formform->picture,0));
     //print_r($rwf);
-    $furl = ($rwf->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf->contextid."/".$rwf->component."/".$rwf->filearea."/".$rwf->itemid."/".$rwf->filename:"";
+    //$furl = ($rwf->id<>"")?$CFG->wwwroot."/draftfile.php/".$rwf->contextid."/".$rwf->component."/".$rwf->filearea."/".$rwf->itemid."/".$rwf->filename:"";
     //echo $furl;
+    $entry = new stdClass();
+    $entry->id = 0;
+    if($draftitem = file_get_submitted_draft_itemid('picture')){
+      file_save_draft_area_files($draftitem,$rwf->contextid,'mod_pbl','team_picture',$USER->id,array('subdirs'=>false,'maxfiles'=>1));
+    }
+    $furl = $CFG->wwwroot.'/pluginfile.php/'.$rwf->contextid.'/mod_pbl/team_picture/'.$USER->id.'/'.$rwf->filename;
+    echo $furl;
     $team = new stdClass();
     $team->pblid = $pbl->id;
     $team->userid = $USER->id;
@@ -396,6 +418,8 @@ if($_REQUEST['act']=='nc'){//New Case studies
       $DB->update_record('pbl_team',$team);
     }else{
       $team->timecreated = mktime();
+      $team->remove = 0;
+      print_r($team);
       $DB->insert_record('pbl_team',$team);
     }
     echo "<script type='text/javascript'>window.location.href='?id=".$_REQUEST['id']."'</script>";
@@ -440,7 +464,8 @@ if($_REQUEST['act']=='nc'){//New Case studies
     foreach($rwp as $r){
       $projs .= "&nbsp;&nbsp;<a href='?id=".$_REQUEST['id']."&act=pv&pid=".$r->id."'>".$r->name."</a>";
     }
-    echo "<div class='itembox'><h4>".$rw->name."</h4><img src='".$rw->picture."'/><p><b>Members: </b>".$mber.$projs."</p></div>";
+    $arr = retrieveFile($rw->picture);
+    echo "<div class='itembox'><h4>".$rw->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber.$projs."</p></div>";
     echo "<div style='clear:left;'></div></div>";
     echo "<hr/><h3>Students List</h3>";
     $rw1 = $DB->get_record('context',array('contextlevel'=>'50','instanceid'=>$course->id),"*",MUST_EXIST);
@@ -481,18 +506,28 @@ if($_REQUEST['act']=='nc'){//New Case studies
   echo "<p class='txtarea'>".$rw->intro."</p>";
   if($rw->picture<>""){
     echo "<h4>ภาพประกอบ:</h4>";
-    echo "<img style='width:100%;' src='".$rw->picture."'/>";
+    $arr = retrieveFile($rw->picture);
+    echo "<img style='max-width:100%;' src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/>";
   }
   if($rw->file<>""){
     echo "<h4>เอกสารประกอบ:</h4>";
-    echo "<a href='".$rw->file."'>ดาวน์โหลด</a>";
+    $arr = retrieveFile($rw->file);
+    echo "<a href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'>ดาวน์โหลด</a>";
   }
   $rwpa = $DB->get_records('pbl_project_activity',array('projectid'=>$rw->id,'remove'=>0));
   $pjact = "";
   foreach($rwpa as $ra){
     $des = ($ra->description<>"")?"<p>".$ra->description."</p>":"";
-    $pic = ($ra->picture<>"")?"<img src='".$ra->picture."'/><br/>":"";
-    $fl = ($ra->file<>"")?"<a target='_blank' href='".$ra->file."'>Document</a>":"";
+    $pic = "";
+    if($ra->picture<>""){
+      $arr = retrieveFile($ra->picture);
+      $pic = "<img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><br/>";
+    }
+    $fl = "";
+    if($ra->file<>""){
+      $arr = retrieveFile($ra->file);
+      $fl = "<a target='_blank' href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'>Document</a>";
+    }
     $modbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=pa';\">แก้ไข</button>";
     $delbtn = "<button type='button' onclick=\"if(confirm('คุณต้องการลบกิจกรรมจริงหรือไม่')){javascript:window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=deleteactivity';}\">ลบ</button>";
     $adcbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&aid=".$ra->id."&act=pac';\">เพิ่มคุณสมบัติ</button>";
@@ -524,7 +559,8 @@ if($_REQUEST['act']=='nc'){//New Case studies
     $rwu = $DB->get_record('user',array('id'=>$r->userid));
     $mber .= ", ".$rwu->firstname." ".$rwu->lastname;
   }
-  echo "<div class='itembox'><h4>Team: ".$rwtm->name."</h4><img src='".$rwtm->picture."'/><p><b>Members: </b>".$mber."</p></div>";
+  $arr = retrieveFile($rwtm->picture);
+  echo "<div class='itembox'><h4>Team: ".$rwtm->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber."</p></div>";
   echo "<div style='clear:left;'></div></div>";
   echo "<hr/>";
   echo "<h4>วัตถุประสงค์ในการทำโครงการ/โครงงาน:</h4>";
@@ -535,18 +571,28 @@ if($_REQUEST['act']=='nc'){//New Case studies
   echo "<p class='txtarea'>".$rw->intro."</p>";
   if($rw->picture<>""){
     echo "<h4>ภาพประกอบ:</h4>";
-    echo "<img style='width:100%;' src='".$rw->picture."'/>";
+    $arr = retrieveFile($rw->picture);
+    echo "<img style='max-width:100%;' src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/>";
   }
   if($rw->file<>""){
+    $arr = retrieveFile($rw->file);
     echo "<h4>เอกสารประกอบ:</h4>";
-    echo "<a href='".$rw->file."'>ดาวน์โหลด</a>";
+    echo "<a href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'>ดาวน์โหลด</a>";
   }
   $rwpa = $DB->get_records('pbl_project_activity',array('projectid'=>$rw->id,'remove'=>0));
   $pjact = "";
   foreach($rwpa as $ra){
     $des = ($ra->description<>"")?"<p>".$ra->description."</p>":"";
-    $pic = ($ra->picture<>"")?"<img src='".$ra->picture."'/><br/>":"";
-    $fl = ($ra->file<>"")?"<a target='_blank' href='".$ra->file."'>Document</a>":"";
+    $pic = "";
+    if($ra->picture<>""){
+      $arr = retrieveFile($ra->picture);
+      $pic = "<img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><br/>";
+    }
+    $fl = "";
+    if($ra->file<>""){
+      $arr = retrieveFile($ra->file);
+      $fl = "<a target='_blank' href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'>Document</a>";
+    }
     $modbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=pa';\">แก้ไข</button>";
     $delbtn = "<button type='button' onclick=\"if(confirm('คุณต้องการลบกิจกรรมจริงหรือไม่')){javascript:window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=deleteactivity';}\">ลบ</button>";
     $adcbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&aid=".$ra->id."&act=pac';\">เพิ่มคุณสมบัติ</button>";
@@ -587,7 +633,8 @@ if($_REQUEST['act']=='nc'){//New Case studies
   foreach($rwcase as $r){
     $rwcaseu = $DB->get_record('user',array('id'=>$r->userid));
     $aut = $rwcaseu->firstname." ".$rwcasemu->lastname;
-    echo "<div class='itembox'><h4><a href='?id=".$_REQUEST['id']."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='".$r->picture."'/><p><b>Author: </b>".$aut."</p>".
+    $arr = retrieveFile($r->picture);
+    echo "<div class='itembox'><h4><a href='?id=".$_REQUEST['id']."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Author: </b>".$aut."</p>".
     "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$r->id."&act=deletecase';}\" style='color:red;'>Remove</button></div>";
   }
   echo "<div style='clear:left;'></div></div><hr/>";
@@ -616,7 +663,8 @@ if($_REQUEST['act']=='nc'){//New Case studies
       $projs .= "&nbsp;".$delim."&nbsp;<a href='?id=".$_REQUEST['id']."&act=pv&pid=".$rp->id."'>".$rp->name."</a>";
       $countp++;
     }
-    echo "<div class='itembox'><h4>".$r->name."</h4><img src='".$r->picture."'/><p><b>Members: </b>".$mber.$projs."</p>";
+    $arr = retrieveFile($r->picture);
+    echo "<div class='itembox'><h4>".$r->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber.$projs."</p>";
     if($USER->id==$r->userid){
     echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=ct';\">Edit</button>".
       "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=np';\">New Project</button>".
@@ -643,7 +691,8 @@ function stdCases($id,$pblid){
   foreach($rwcase as $r){
     $rwcaseu = $DB->get_record('user',array('id'=>$r->userid));
     $aut = $rwcaseu->firstname." ".$rwcasemu->lastname;
-    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='".$r->picture."'/><p><b>Author: </b>".$aut."</p>".
+    $arr = retrieveFile($r->picture);
+    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Author: </b>".$aut."</p>".
     "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deletecase';}\" style='color:red;'>Remove</button></div>";
   }
   $ret .= "<div style='clear:left;'></div><hr/>";
@@ -663,9 +712,29 @@ function stdProjs($id,$pblid){
       $rwu = $DB->get_record('user',array('id'=>$rr->userid));
       $mber .= ", ".$rwu->firstname." ".$rwu->lastname;
     }
-    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=pv&tid=".$r->teamid."&pid=".$r->id."'>".$r->name."</a></h4><img src='".$r->picture."'/><p><b>Members: </b>".$mber."</p>".
+    $arr = retrieveFile($r->picture);
+    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=pv&tid=".$r->teamid."&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber."</p>".
     "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโครงการนี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deleteproject';}\" style='color:red;'>Remove</button></div>";
   }
   $ret .= "<div style='clear:left;'></div><hr/>";
+  return $ret;
+}
+
+function retrieveFile($url){
+  $tmpurl = $url;
+  $fs = get_file_storage();
+  $filename = substr($url,strrpos($url,"/")+1);
+  $url = substr($url,0,strrpos($url,"/"));
+  $itemid = substr($url,strrpos($url,"/")+1);
+  $url = substr($url,0,strrpos($url,"/"));
+  $area = substr($url,strrpos($url,"/")+1);
+  $url = substr($url,0,strrpos($url,"/"));
+  $url = substr($url,0,strrpos($url,"/"));
+  $contextid = substr($url,strrpos($url,"/")+1);
+  $ret = new stdClass();
+  $ret->filename = $filename;
+  $ret->itemid = $itemid;
+  $ret->area = $area;
+  $ret->contextid = $contextid;
   return $ret;
 }
