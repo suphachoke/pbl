@@ -507,7 +507,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
   if($rw->picture<>""){
     echo "<h4>ภาพประกอบ:</h4>";
     $arr = retrieveFile($rw->picture);
-    echo "<img style='width:100%;' src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/>";
+    echo "<img style='max-width:100%;' src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/>";
   }
   if($rw->file<>""){
     echo "<h4>เอกสารประกอบ:</h4>";
@@ -572,7 +572,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
   if($rw->picture<>""){
     echo "<h4>ภาพประกอบ:</h4>";
     $arr = retrieveFile($rw->picture);
-    echo "<img style='width:100%;' src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/>";
+    echo "<img style='max-width:100%;' src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/>";
   }
   if($rw->file<>""){
     $arr = retrieveFile($rw->file);
