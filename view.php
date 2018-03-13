@@ -238,7 +238,14 @@ if($_REQUEST['act']=='nc'){//New Case studies
     if($_REQUEST['pid']<>""){
       $case->timemodified = mktime();
       $case->id = $_REQUEST['pid'];
+      $case->usermodify = $USER->id;
       $DB->update_record('pbl_project',$case);
+      $log = new stdClass();
+      $log->userid = $USER->id;
+      $log->timecreated = $case->$timemodified;
+      $log->type = "Project";
+      $log->resourceid = $case->id;
+      $DB->insert_record('pbl_log_modified',$log);
     }else{
       $case->timecreated = mktime();
       $case->timemodified = 0;
@@ -291,7 +298,14 @@ if($_REQUEST['act']=='nc'){//New Case studies
     if($_REQUEST['aid']<>""){
       $acta->id = $_REQUEST['aid'];
       $acta->timemodified = mktime();
+      $acta->usermodify = $USER->id;
       $DB->update_record('pbl_project_activity',$acta);
+      $log = new stdClass();
+      $log->userid = $USER->id;
+      $log->timecreated = $acta->$timemodified;
+      $log->type = "Activity";
+      $log->resourceid = $acta->id;
+      $DB->insert_record('pbl_log_modified',$log);
     }else{
       $acta->timecreated = mktime();
       $acta->timemodified = 0;
