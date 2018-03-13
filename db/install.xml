@@ -65,6 +65,7 @@
             <FIELD NAME="source" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
             <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
             <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+            <FIELD NAME="usermodify" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
             <FIELD NAME="remove" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
         </FIELDS>
         <KEYS>
@@ -82,6 +83,7 @@
             <FIELD NAME="file" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="name field for moodle instances"/>
             <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
             <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+            <FIELD NAME="usermodify" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
             <FIELD NAME="remove" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Course pbl activity belongs to"/>
         </FIELDS>
         <KEYS>

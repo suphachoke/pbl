@@ -15,15 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Prints a particular instance of pbl
- *
- * You can have a rather longer description of the file as well,
- * if you like, and it can span multiple lines.
- *
- * @package    mod_pbl
- * @copyright  2016 Your Name <your@email.address>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+* Prints a particular instance of pbl
+*
+* You can have a rather longer description of the file as well,
+* if you like, and it can span multiple lines.
+*
+* @package    mod_pbl
+* @copyright  2016 Your Name <your@email.address>
+* @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+*/
 
 // Replace pbl with the name of your module and remove this line.
 
@@ -38,11 +38,11 @@ class simpleform extends moodleform {
     $mform = $this->_form;
     $mform->addElement('text','name','ชื่อทีม');
     $definitionoptions = array('subdirs'=>false, 'maxfiles'=>99, 'maxbytes'=>1024000, 'trusttext'=>true,
-                           'context'=>'');
+    'context'=>'');
     $mform->addElement('editor','intro','เกี่ยวกับทีม',null,$definitionoptions);
     $mform->setType('intro',PARAM_RAW);
     $mform->addElement('filemanager', 'picture', 'รูปภาพทีม', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
     $mform->addRule('name', null, 'required', null, 'client');
     $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
@@ -61,13 +61,13 @@ class newprojectform extends moodleform {
     $mform->addElement('textarea','problems','ประเด็นปัญหา','wrap="virtual" rows="5" cols="50"');
     $mform->addElement('textarea','objectives','วัตถุประสงค์','wrap="virtual" rows="5" cols="50"');
     $definitionoptions = array('subdirs'=>false, 'maxfiles'=>99, 'maxbytes'=>1024000, 'trusttext'=>true,
-                           'context'=>'');
+    'context'=>'');
     $mform->addElement('editor','intro','เกี่ยวกับโครงการ',null,$definitionoptions);
     $mform->setType('intro',PARAM_RAW);
     $mform->addElement('filemanager', 'picture', 'รูปภาพประกอบ', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
     $mform->addElement('filemanager', 'file', 'ไฟล์ประกอบ', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('pdf','doc','docx','ppt','pptx')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('pdf','doc','docx','ppt','pptx')));
     $mform->addRule('name', null, 'required', null, 'client');
     $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
     $mform->addRule('objectives', null, 'required', null, 'client');
@@ -88,13 +88,13 @@ class newcaseform extends moodleform {
     $mform->addElement('textarea','problems','ประเด็นปัญหา','wrap="virtual" rows="5" cols="50"');
     $mform->addElement('textarea','objectives','วัตถุประสงค์','wrap="virtual" rows="5" cols="50"');
     $definitionoptions = array('subdirs'=>false, 'maxfiles'=>99, 'maxbytes'=>1024000, 'trusttext'=>true,
-                           'context'=>'');
+    'context'=>'');
     $mform->addElement('editor','intro','เกี่ยวกับโครงการ',null,$definitionoptions);
     $mform->setType('intro',PARAM_RAW);
     $mform->addElement('filemanager', 'picture', 'รูปภาพประกอบ', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
     $mform->addElement('filemanager', 'file', 'ไฟล์ประกอบ', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('pdf','doc','docx','ppt','pptx')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('pdf','doc','docx','ppt','pptx')));
     $mform->addElement('text','source','แหล่งที่มา','style="width:95%"');
     $mform->addRule('name', null, 'required', null, 'client');
     $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
@@ -115,13 +115,13 @@ class newactivityform extends moodleform {
     $mform = $this->_form;
     $mform->addElement('text','name','ชื่อกิจกรรม','style="width:95%;"');
     $definitionoptions = array('subdirs'=>false, 'maxfiles'=>99, 'maxbytes'=>1024000, 'trusttext'=>true,
-                           'context'=>'');
+    'context'=>'');
     $mform->addElement('editor','description','อธิบายกิจกรรม',null,$definitionoptions);
     $mform->setType('description',PARAM_RAW);
     $mform->addElement('filemanager', 'picture', 'รูปภาพประกอบ', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('jpg','png','jpeg')));
     $mform->addElement('filemanager', 'file', 'ไฟล์ประกอบ', null,
-                   array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('pdf','doc','docx','ppt','pptx')));
+    array('subdirs'=>0,'maxfiles'=>1,'maxbytes' => 2048000, 'accepted_types' => array('pdf','doc','docx','ppt','pptx')));
     $mform->addRule('name', null, 'required', null, 'client');
     $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
@@ -148,22 +148,22 @@ $id = optional_param('id', 0, PARAM_INT); // Course_module ID, or
 $n  = optional_param('n', 0, PARAM_INT);  // ... pbl instance ID - it should be named as the first character of the module.
 
 if ($id) {
-    $cm         = get_coursemodule_from_id('pbl', $id, 0, false, MUST_EXIST);
-    $course     = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-    $pbl  = $DB->get_record('pbl', array('id' => $cm->instance), '*', MUST_EXIST);
+  $cm         = get_coursemodule_from_id('pbl', $id, 0, false, MUST_EXIST);
+  $course     = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
+  $pbl  = $DB->get_record('pbl', array('id' => $cm->instance), '*', MUST_EXIST);
 } else if ($n) {
-    $pbl  = $DB->get_record('pbl', array('id' => $n), '*', MUST_EXIST);
-    $course     = $DB->get_record('course', array('id' => $pbl->course), '*', MUST_EXIST);
-    $cm         = get_coursemodule_from_instance('pbl', $pbl->id, $course->id, false, MUST_EXIST);
+  $pbl  = $DB->get_record('pbl', array('id' => $n), '*', MUST_EXIST);
+  $course     = $DB->get_record('course', array('id' => $pbl->course), '*', MUST_EXIST);
+  $cm         = get_coursemodule_from_instance('pbl', $pbl->id, $course->id, false, MUST_EXIST);
 } else {
-    error('You must specify a course_module ID or an instance ID');
+  error('You must specify a course_module ID or an instance ID');
 }
 
 require_login($course, true, $cm);
 
 $event = \mod_pbl\event\course_module_viewed::create(array(
-    'objectid' => $PAGE->cm->instance,
-    'context' => $PAGE->context,
+  'objectid' => $PAGE->cm->instance,
+  'context' => $PAGE->context,
 ));
 $event->add_record_snapshot('course', $PAGE->course);
 $event->add_record_snapshot($PAGE->cm->modname, $pbl);
@@ -176,34 +176,34 @@ $PAGE->set_title(format_string($pbl->name));
 $PAGE->set_heading(format_string($course->fullname));
 
 /*
- * Other things you may want to set - remove if not needed.
- * $PAGE->set_cacheable(false);
- * $PAGE->set_focuscontrol('some-html-id');
- * $PAGE->add_body_class('pbl-'.$somevar);
- */
+* Other things you may want to set - remove if not needed.
+* $PAGE->set_cacheable(false);
+* $PAGE->set_focuscontrol('some-html-id');
+* $PAGE->add_body_class('pbl-'.$somevar);
+*/
 
 // Output starts here.
 echo $OUTPUT->header();
 
 // Conditions to show the intro can change to look for own settings or whatever.
 if ($pbl->intro) {
-    echo $OUTPUT->box(format_module_intro('pbl', $pbl, $cm->id), 'generalbox mod_introbox', 'pblintro');
+  echo $OUTPUT->box(format_module_intro('pbl', $pbl, $cm->id), 'generalbox mod_introbox', 'pblintro');
 }
 
 // Replace the following lines with you own code.
 echo "<style type='text/css'>".
-		"table{border-top:1px solid gray;border-bottom:1px solid gray;}".
-		"table tr th{border-bottom:1px solid gray;}".
-		"table tr td,table tr th{padding:10px;}".
-    "h3 {text-align:center;}".
-    ".itembox {float:left;margin:10px;}".
-    ".itembox img {height:100px;}".
-    ".txtarea {margin:5px;padding:5px;border:1px solid #efefef;}".
-	"</style>";
+"table{border-top:1px solid gray;border-bottom:1px solid gray;}".
+"table tr th{border-bottom:1px solid gray;}".
+"table tr td,table tr th{padding:10px;}".
+"h3 {text-align:center;}".
+".itembox {float:left;margin:10px;}".
+".itembox img {height:100px;}".
+".txtarea {margin:5px;padding:5px;border:1px solid #efefef;}".
+"</style>";
 
 
 if($_REQUEST['act']=='nc'){//New Case studies
-	echo $OUTPUT->heading('Case Studie Analysis');
+  echo $OUTPUT->heading('Case Studie Analysis');
   $mform = new newcaseform(new moodle_url('?id='.$_REQUEST['id'].'&uid='.$USER->id.'&act=nc'));
   if($mform->is_cancelled()){
 
@@ -260,7 +260,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
 
 }else if($_REQUEST['act']=='pa'){//Add Project/Case Activities
   $rwp = $DB->get_record('pbl_project',array('id'=>$_REQUEST['pid']));
-	echo $OUTPUT->heading('Adding "'.$rwp->name.'" Activities');
+  echo $OUTPUT->heading('Adding "'.$rwp->name.'" Activities');
   $mform = new newactivityform(new moodle_url('?id='.$_REQUEST['id'].'&act=pa&pid='.$_REQUEST['pid']));
   if($mform->is_cancelled()){
 
@@ -312,7 +312,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
 }else if($_REQUEST['act']=='pac'){//Add Project/Activity Contexts
   $rwa = $DB->get_record('pbl_project_activity',array('id'=>$_REQUEST['aid']));
   $rwp = $DB->get_record('pbl_project',array('id'=>$rwa->projectid));
-	echo $OUTPUT->heading('Adding <i>"'.$rwp->name.':'.$rwa->name.'"</i> Attributes');
+  echo $OUTPUT->heading('Adding <i>"'.$rwp->name.':'.$rwa->name.'"</i> Attributes');
   $mform = new newcontextform(new moodle_url('?id='.$_REQUEST['id'].'&act=pac&aid='.$_REQUEST['aid']));
   if($mform->is_cancelled()){
 
@@ -332,7 +332,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
     $mform->display();
   }
 }else if($_REQUEST['act']=='np'){//New Projects
-	echo $OUTPUT->heading('Create New Project');
+  echo $OUTPUT->heading('Create New Project');
   $mform = new newprojectform(new moodle_url('?id='.$_REQUEST['id'].'&act=np&tid='.$_REQUEST['tid']));
   if($mform->is_cancelled()){
 
@@ -386,7 +386,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
     $mform->display();
   }
 }else if($_REQUEST['act']=='ct'){//New Team
-	echo $OUTPUT->heading('Create Your Own Team');
+  echo $OUTPUT->heading('Create Your Own Team');
 
   $mform = new simpleform(new moodle_url('?id='.$_REQUEST['id'].'&act=ct'));
   if($mform->is_cancelled()){
@@ -446,7 +446,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
   }else if($_POST['action']=="del"){
     $DB->delete_records('pbl_team_members',array('teamid'=>$_POST['teamid'],'userid'=>$_POST['userid']));
   }
-	echo $OUTPUT->heading('Adding Team\'s Members');
+  echo $OUTPUT->heading('Adding Team\'s Members');
 
   $rw = $DB->get_record('pbl_team',array('id'=>$_REQUEST['tid'],'userid'=>$USER->id));
   if($rw->id<>""){
@@ -470,9 +470,9 @@ if($_REQUEST['act']=='nc'){//New Case studies
     echo "<hr/><h3>Students List</h3>";
     $rw1 = $DB->get_record('context',array('contextlevel'=>'50','instanceid'=>$course->id),"*",MUST_EXIST);
     $rw3 = $DB->get_records('role_assignments',array('contextid'=>$rw1->id,'roleid'=>'5'));
-  	echo"<table><tr><th>ที่</th><th>รหัสนักศึกษา</th><th>ชื่อ - สกุล</th><th>รูป</th><th></th></tr>";
-  	$i = 1;
-  	foreach($rw3 as $r){
+    echo"<table><tr><th>ที่</th><th>รหัสนักศึกษา</th><th>ชื่อ - สกุล</th><th>รูป</th><th></th></tr>";
+    $i = 1;
+    foreach($rw3 as $r){
       $btn = "<input type='submit' style='color:green;' value='เพิ่มเข้ากลุ่ม'/>";
       $action = "add";
       foreach($rwm as $rc){
@@ -482,18 +482,18 @@ if($_REQUEST['act']=='nc'){//New Case studies
         }
       }
       if($chk)continue;
-  		$rw4 = $DB->get_record('user',array('id'=>$r->userid),"*",MUST_EXIST);
-  		$pix = "<img src='../../user/pix.php/".$rw4->id."/f1.jpg' style='width:70px;'/>";
-  		echo "<tr><td>".$i."<input type='hidden' name='userid[]' value='".$rw4->id."'/></td><td>".$rw4->username."</td><td>".$rw4->firstname." ".$rw4->lastname."</td><td>".$pix."</td>".
+      $rw4 = $DB->get_record('user',array('id'=>$r->userid),"*",MUST_EXIST);
+      $pix = "<img src='../../user/pix.php/".$rw4->id."/f1.jpg' style='width:70px;'/>";
+      echo "<tr><td>".$i."<input type='hidden' name='userid[]' value='".$rw4->id."'/></td><td>".$rw4->username."</td><td>".$rw4->firstname." ".$rw4->lastname."</td><td>".$pix."</td>".
       "<td><form action='?act=am&id=".$_REQUEST['id']."&tid=".$_REQUEST['tid']."' method='post'><input type='hidden' name='teamid' value='".$rw->id."'/>".
       "<input type='hidden' name='action' value='".$action."'/><input type='hidden' name='userid' value='".$rw4->id."'/>".$btn."</form></td></tr>";
-  		$i++;
-  	}
-  	echo"</table>";
+      $i++;
+    }
+    echo"</table>";
   }
 }else if($_REQUEST['act']=='cv'){//Case View
   $rw = $DB->get_record('pbl_project',array('id'=>$_REQUEST['pid']));
-	echo $OUTPUT->heading('Case Study - '.$rw->name);
+  echo $OUTPUT->heading('Case Study - '.$rw->name);
   $rwtmu = $DB->get_record('user',array('id'=>$rw->userid));
   $mber = $rwtmu->firstname." ".$rwtmu->lastname;
   echo "<div>Author: ".$mber."</div>";
@@ -529,13 +529,13 @@ if($_REQUEST['act']=='nc'){//New Case studies
       $fl = "<a target='_blank' href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'>Document</a>";
     }
     $modbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=pa';\">แก้ไข</button>";
-    $delbtn = "<button type='button' onclick=\"if(confirm('คุณต้องการลบกิจกรรมจริงหรือไม่')){javascript:window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=deleteactivity';}\">ลบ</button>";
+    $delbtn = ($ra->userid==$USER->id)?"<button type='button' onclick=\"if(confirm('คุณต้องการลบกิจกรรมจริงหรือไม่')){javascript:window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=deleteactivity';}\">ลบ</button>":"";
     $adcbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&aid=".$ra->id."&act=pac';\">เพิ่มคุณสมบัติ</button>";
     $pjact .= "<div style='margin-left:10px;'><h5>".$ra->name."</h5>".$des.$pic.$fl."<br/>".$modbtn."&nbsp;".$delbtn."&nbsp;".$adcbtn;
     $rwpac = $DB->get_records('pbl_project_activity_context',array('activityid'=>$ra->id));
     $pjactcon = "";
     foreach($rwpac as $rc){
-      $delbtn2 = "<button type='button' onclick=\"javascript:if(confirm('คุณแน่ใจที่จะลบหรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&aid=".$ra->id."&cid=".$rc->id."&act=deletecontext';}\">ลบ</button>";
+      $delbtn2 = ($rc->userid==$USER->id)?"<button type='button' onclick=\"javascript:if(confirm('คุณแน่ใจที่จะลบหรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&aid=".$ra->id."&cid=".$rc->id."&act=deletecontext';}\">ลบ</button>":"";
       $pjactcon .= "<li>".$rc->name." : ".$rc->value."&nbsp;".$delbtn2."</li>";
     }
     $pjact .= "<ul style='margin-top:0;'>".$pjactcon."</ul></div>";
@@ -545,11 +545,13 @@ if($_REQUEST['act']=='nc'){//New Case studies
   $src = ($rw->source<>"")?$rw->source:"-";
   echo "<p>".$src."</p>"."<hr/>";
   echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&act=nc&uid=".$rw->userid."';\">แก้ไขข้อมูล</button>";
-  echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&act=pa';\">เพิ่มกิจกรรม</button>".
-  "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&act=deletecase';}\" style='color:red;'>Remove</button>";
+  echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&act=pa';\">เพิ่มกิจกรรม</button>";
+  if($rw->userid==$USER->id){
+    echo "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&act=deletecase';}\" style='color:red;'>Remove</button>";
+  }
 }else if($_REQUEST['act']=='pv'){//Project View
   $rw = $DB->get_record('pbl_project',array('id'=>$_REQUEST['pid']));
-	echo $OUTPUT->heading('Project - '.$rw->name);
+  echo $OUTPUT->heading('Project - '.$rw->name);
   echo "<div>";
   $rwm = $DB->get_records('pbl_team_members',array('teamid'=>$rw->teamid));
   $rwtm = $DB->get_record('pbl_team',array('id'=>$rw->teamid));
@@ -594,39 +596,39 @@ if($_REQUEST['act']=='nc'){//New Case studies
       $fl = "<a target='_blank' href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'>Document</a>";
     }
     $modbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=pa';\">แก้ไข</button>";
-    $delbtn = "<button type='button' onclick=\"if(confirm('คุณต้องการลบกิจกรรมจริงหรือไม่')){javascript:window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=deleteactivity';}\">ลบ</button>";
+    $delbtn = ($ra->userid==$USER->id)?"<button type='button' onclick=\"if(confirm('คุณต้องการลบกิจกรรมจริงหรือไม่')){javascript:window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&aid=".$ra->id."&act=deleteactivity';}\">ลบ</button>":"";
     $adcbtn = "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&aid=".$ra->id."&act=pac';\">เพิ่มคุณสมบัติ</button>";
     $pjact .= "<div style='margin-left:10px;'><h5>".$ra->name."&nbsp;".$modbtn."&nbsp;".$delbtn."&nbsp;".$adcbtn."</h5>".$des.$pic.$fl;
     $rwpac = $DB->get_records('pbl_project_activity_context',array('activityid'=>$ra->id));
     $pjactcon = "";
     foreach($rwpac as $rc){
-      $delbtn2 = "<button type='button' onclick=\"javascript:if(confirm('คุณแน่ใจที่จะลบหรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&aid=".$ra->id."&cid=".$rc->id."&act=deletecontext';}\">ลบ</button>";
+      $delbtn2 = ($rc->userid==$USER->id)?"<button type='button' onclick=\"javascript:if(confirm('คุณแน่ใจที่จะลบหรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&aid=".$ra->id."&cid=".$rc->id."&act=deletecontext';}\">ลบ</button>":"";
       $pjactcon .= "<li>".$rc->name." : ".$rc->value."&nbsp;".$delbtn2."</li>";
     }
     $pjact .= "<ul style='margin-top:0;'>".$pjactcon."</ul></div>";
   }
   echo "<h4>กิจกรรม:</h4>".$pjact."<hr/>";
   echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&tid=".$rw->teamid."&act=np';\">แก้ไขข้อมูล</button>";
-  echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&act=pa';\">เพิ่มกิจกรรม</button>".
-  "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโครงการนี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&act=deleteproject';}\" style='color:red;'>Remove</button>";
+  echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&act=pa';\">เพิ่มกิจกรรม</button>";
+  if($rw->userid==$USER->id){
+    echo "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโครงการนี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rw->id."&act=deleteproject';}\" style='color:red;'>Remove</button>";
+  }
 }else if($_REQUEST['act']=='se'){//Search Engine
-	echo $OUTPUT->heading('Projects/Case-Studies Search Engine');
+  echo $OUTPUT->heading('Projects/Case-Studies Search Engine');
 }else {//Dashboard
   $rw1 = $DB->get_record('context',array('contextlevel'=>'50','instanceid'=>$course->id),"*",MUST_EXIST);
   $rw2 = $DB->get_record('role_assignments',array('contextid'=>$rw1->id,'userid'=>$USER->id),"*",MUST_EXIST);
-	echo $OUTPUT->heading('Projects Dashboard');
-	echo "<button class='act-btn' id='nc'>New Case Study</button>".
-		"&nbsp;<button class='act-btn' id='ct'>Create Team</button>".
-		"&nbsp;<button class='act-btn' id='se'>Search Engine</button>";
+  echo $OUTPUT->heading('Projects Dashboard');
+  echo "<button class='act-btn' id='nc'>New Case Study</button>".
+  "&nbsp;<button class='act-btn' id='ct'>Create Team</button>".
+  "&nbsp;<button class='act-btn' id='se'>Search Engine</button>";
   echo "<hr/>";
-  if($rw2->roleid<=4){
-    echo "<div>";
-    echo "<h3>All Case Study</h3>".stdCases($_REQUEST['id'],$pbl->id);
-    echo "</div>";
-    echo "<div>";
-    echo "<h3>All Projects</h3>".stdProjs($_REQUEST['id'],$pbl->id);
-    echo "</div>";
-  }
+  echo "<div>";
+  echo "<h3>All Projects</h3>".stdProjs($_REQUEST['id'],$pbl->id);
+  echo "</div>";
+  echo "<div>";
+  echo "<h3>All Case Study</h3>".stdCases($_REQUEST['id'],$pbl->id,$rw2->roleid);
+  echo "</div>";
   echo "<div>";
   echo "<h3>Your Case Study</h3>";
   $rwcase = $DB->get_records('pbl_project',array('pblid'=>$pbl->id,'userid'=>$USER->id,'remove'=>0,'type'=>'case'));
@@ -666,7 +668,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
     $arr = retrieveFile($r->picture);
     echo "<div class='itembox'><h4>".$r->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber.$projs."</p>";
     if($USER->id==$r->userid){
-    echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=ct';\">Edit</button>".
+      echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=ct';\">Edit</button>".
       "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=np';\">New Project</button>".
       "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=am';\">Add Member</button>".
       "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลเหล่านี้ใช่หรือไม่\\n - ข้อมูลทีมและสมาชิก\\n - ข้อมูลโปรเจกต์ทั้งหมดในทีม')){window.location.href='action.php?id=".$_REQUEST['id']."&tid=".$r->id."&act=deleteteam';}\" style='color:red;'>Remove</button>";
@@ -678,13 +680,13 @@ if($_REQUEST['act']=='nc'){//New Case studies
 
 echo "<script type='text/javascript' src='../../lib/jquery/jquery-3.1.0.js'></script>";
 echo "<script type='text/javascript'>".
-		"\$('.act-btn').click(function(){window.location.href='?id=".$_REQUEST['id']."&uid=".$USER->id."&act='+\$(this).prop('id')});".
-		"</script>";
+"\$('.act-btn').click(function(){window.location.href='?id=".$_REQUEST['id']."&uid=".$USER->id."&act='+\$(this).prop('id')});".
+"</script>";
 
 // Finish the page.
 echo $OUTPUT->footer();
 
-function stdCases($id,$pblid){
+function stdCases($id,$pblid,$role){
   global $DB;
   $ret = "";
   $rwcase = $DB->get_records('pbl_project',array('pblid'=>$pblid,'remove'=>0,'type'=>'case'));
@@ -692,14 +694,16 @@ function stdCases($id,$pblid){
     $rwcaseu = $DB->get_record('user',array('id'=>$r->userid));
     $aut = $rwcaseu->firstname." ".$rwcasemu->lastname;
     $arr = retrieveFile($r->picture);
-    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Author: </b>".$aut."</p>".
-    "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deletecase';}\" style='color:red;'>Remove</button></div>";
+    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Author: </b>".$aut."</p>";
+    if($role<=4){
+      $ret .= "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deletecase';}\" style='color:red;'>Remove</button></div>";
+    }
   }
   $ret .= "<div style='clear:left;'></div><hr/>";
   return $ret;
 }
 
-function stdProjs($id,$pblid){
+function stdProjs($id,$pblid,$role){
   global $DB;
   $ret = "";
   $rwcase = $DB->get_records('pbl_project',array('pblid'=>$pblid,'remove'=>0,'type'=>'project'));
@@ -713,8 +717,10 @@ function stdProjs($id,$pblid){
       $mber .= ", ".$rwu->firstname." ".$rwu->lastname;
     }
     $arr = retrieveFile($r->picture);
-    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=pv&tid=".$r->teamid."&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber."</p>".
-    "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโครงการนี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deleteproject';}\" style='color:red;'>Remove</button></div>";
+    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=pv&tid=".$r->teamid."&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber."</p>";
+    if($role<=4){
+      $ret .= "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโครงการนี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deleteproject';}\" style='color:red;'>Remove</button></div>";
+    }
   }
   $ret .= "<div style='clear:left;'></div><hr/>";
   return $ret;
