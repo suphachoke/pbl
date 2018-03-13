@@ -638,7 +638,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
   "&nbsp;<button class='act-btn' id='se'>Search Engine</button>";
   echo "<hr/>";
   echo "<div>";
-  echo "<h3>All Projects</h3>".stdProjs($_REQUEST['id'],$pbl->id);
+  echo "<h3>All Projects</h3>".stdProjs($_REQUEST['id'],$pbl->id,$rw2->roleid);
   echo "</div>";
   echo "<div>";
   echo "<h3>All Case Study</h3>".stdCases($_REQUEST['id'],$pbl->id,$rw2->roleid);
