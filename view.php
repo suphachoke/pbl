@@ -495,7 +495,7 @@ if($_REQUEST['act']=='nc'){//New Case studies
       $projs .= "&nbsp;&nbsp;<a href='?id=".$_REQUEST['id']."&act=pv&pid=".$r->id."'>".$r->name."</a>";
     }
     $arr = retrieveFile($rw->picture);
-    echo "<div class='itembox'><h4>".$rw->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber.$projs."</p></div>";
+    echo "<div class='itembox'><h4>".$rw->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'/><p><b>Members: </b>".$mber.$projs."</p></div>";
     echo "<div style='clear:left;'></div></div>";
     echo "<hr/><h3>Students List</h3>";
     $rw1 = $DB->get_record('context',array('contextlevel'=>'50','instanceid'=>$course->id),"*",MUST_EXIST);
@@ -616,8 +616,9 @@ if($_REQUEST['act']=='nc'){//New Case studies
     echo "<a href='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'>ดาวน์โหลด</a>";
   }
   $rwpa = $DB->get_records('pbl_project_activity',array('projectid'=>$rw->id,'remove'=>0));
-  $pjact = "";
+  $pjact_arr = array();
   foreach($rwpa as $ra){
+    $pjact = "";
     $des = ($ra->intro<>"")?"<p>".$ra->intro."</p>":"";
     $pic = "";
     if($ra->picture<>""){
@@ -639,9 +640,10 @@ if($_REQUEST['act']=='nc'){//New Case studies
       $delbtn2 = ($rc->userid==$USER->id)?"<button type='button' onclick=\"javascript:if(confirm('คุณแน่ใจที่จะลบหรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&aid=".$ra->id."&cid=".$rc->id."&act=deletecontext';}\">ลบ</button>":"";
       $pjactcon .= "<li>".$rc->name." : ".$rc->value."&nbsp;".$delbtn2."</li>";
     }
-    $pjact .= "<ul style='margin-top:0;'>".$pjactcon."</ul></div>";
+    $pjact .= "<ul style='margin-top:0;'>".$pjactcon."</ul><input class='commentbox' type='text' style='width:100%;'/></div>";
+    $pjact_arr[] = $pjact;
   }
-  echo "<h4>กิจกรรม:</h4>".$pjact."<hr/>";
+  echo "<h4>กิจกรรม:</h4>".implode("",$pjact_arr)."<hr/>";
   echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&tid=".$rw->teamid."&act=np';\">แก้ไขข้อมูล</button>";
   echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&pid=".$rw->id."&act=pa';\">เพิ่มกิจกรรม</button>";
   if($rw->userid==$USER->id){
@@ -666,18 +668,18 @@ if($_REQUEST['act']=='nc'){//New Case studies
     echo "</div>";
   }
   echo "<div>";
-  echo "<h3>Your Case Study</h3>";
+  echo "<h3>Your Case Studies</h3>";
   $rwcase = $DB->get_records('pbl_project',array('pblid'=>$pbl->id,'userid'=>$USER->id,'remove'=>0,'type'=>'case'));
   foreach($rwcase as $r){
     $rwcaseu = $DB->get_record('user',array('id'=>$r->userid));
     $aut = $rwcaseu->firstname." ".$rwcasemu->lastname;
     $arr = retrieveFile($r->picture);
-    echo "<div class='itembox'><h4><a href='?id=".$_REQUEST['id']."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Author: </b>".$aut."</p>".
+    echo "<div class='itembox'><h4><a href='?id=".$_REQUEST['id']."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'/><p><b>Author: </b>".$aut."</p>".
     "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$r->id."&act=deletecase';}\" style='color:red;'>Remove</button></div>";
   }
   echo "<div style='clear:left;'></div></div><hr/>";
-  echo "<div>";
-  echo "<h3>Your Teams</h3>";
+  $allprojs = "";
+  $teams = "";
   $rw = $DB->get_records('pbl_team',array('pblid'=>$pbl->id,'userid'=>$USER->id,'remove'=>0));
   $rwtmp0 = $DB->get_records('pbl_team_members',array('userid'=>$USER->id));
   foreach($rwtmp0 as $r){
@@ -697,26 +699,43 @@ if($_REQUEST['act']=='nc'){//New Case studies
     $projs = "<br/><b>Projects:</b>";
     $countp = 0;
     foreach($rwp as $rp){
+      $rwprojt = $DB->get_record('pbl_team',array('id'=>$rp->teamid));
+      $rwproju = $DB->get_record('user',array('id'=>$rwprojt->userid));
+      $aut = $rwproju->firstname." ".$rwproju->lastname;
+      $arr = retrieveFile($rp->picture);
+      $allprojs .= "<div class='itembox'><h4><a href='?id=".$_REQUEST['id']."&act=pv&pid=".$rp->id."'>".$rp->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'/><p><b>Author: </b>".$aut."</p>";
+      if($USER->id==$rwproju->id){
+        $allprojs .= "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโปรเจกต์นี้ใช่หรือไม่')){window.location.href='action.php?id=".$_REQUEST['id']."&pid=".$rp->id."&act=deleteproject';}\" style='color:red;'>Remove</button>";
+      }
+      $allprojs .= "</div>";
       $delim = ($countp>0)?",":"";
       $projs .= "&nbsp;".$delim."&nbsp;<a href='?id=".$_REQUEST['id']."&act=pv&pid=".$rp->id."'>".$rp->name."</a>";
       $countp++;
     }
     $arr = retrieveFile($r->picture);
-    echo "<div class='itembox'><h4>".$r->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber.$projs."</p>";
+    $teams .= "<div class='itembox'><h4>".$r->name."</h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'/><p><b>Members: </b>".$mber.$projs."</p>";
     if($USER->id==$r->userid){
-      echo "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=ct';\">Edit</button>".
+      $teams .= "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=ct';\">Edit</button>".
       "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=np';\">New Project</button>".
       "<button type='button' onclick=\"javascript:window.location.href='?id=".$_REQUEST['id']."&tid=".$r->id."&act=am';\">Add Member</button>".
       "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลเหล่านี้ใช่หรือไม่\\n - ข้อมูลทีมและสมาชิก\\n - ข้อมูลโปรเจกต์ทั้งหมดในทีม')){window.location.href='action.php?id=".$_REQUEST['id']."&tid=".$r->id."&act=deleteteam';}\" style='color:red;'>Remove</button>";
     }
-    echo "</div>";
+    $teams .= "</div>";
   }
+  echo "<div><h3>Your Projects</h3>".$allprojs."<div style='clear:left;'></div></div><hr/>";
+  echo "<div>";
+  echo "<h3>Your Teams</h3>";
+  echo $teams;
   echo "<div style='clear:left;'></div></div>";
 }
 
 echo "<script type='text/javascript' src='../../lib/jquery/jquery-3.1.0.js'></script>";
 echo "<script type='text/javascript'>".
 "\$('.act-btn').click(function(){window.location.href='?id=".$_REQUEST['id']."&uid=".$USER->id."&act='+\$(this).prop('id')});".
+"\$('.commentbox').bind('enterKey',function(e){ ".
+"".
+"});".
+"\$('.commentbox').keyup(function(e){if(e.keyCode==13){\$(this).trigger('enterKey');}});".
 "</script>";
 
 // Finish the page.
@@ -730,7 +749,7 @@ function stdCases($id,$pblid,$role){
     $rwcaseu = $DB->get_record('user',array('id'=>$r->userid));
     $aut = $rwcaseu->firstname." ".$rwcasemu->lastname;
     $arr = retrieveFile($r->picture);
-    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Author: </b>".$aut."</p>";
+    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=cv&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'/><p><b>Author: </b>".$aut."</p>";
     if($role<=4){
       $ret .= "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลกรณีศึกษานี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deletecase';}\" style='color:red;'>Remove</button>";
     }
@@ -754,7 +773,7 @@ function stdProjs($id,$pblid,$role){
       $mber .= ", ".$rwu->firstname." ".$rwu->lastname;
     }
     $arr = retrieveFile($r->picture);
-    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=pv&tid=".$r->teamid."&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename'/><p><b>Members: </b>".$mber."</p>";
+    $ret .= "<div class='itembox'><h4><a href='?id=".$id."&act=pv&tid=".$r->teamid."&pid=".$r->id."'>".$r->name."</a></h4><img src='getfile.php?contextid=$arr->contextid&area=$arr->area&itemid=$arr->itemid&filename=$arr->filename&".mktime()."'/><p><b>Members: </b>".$mber."</p>";
     if($role<=4){
       $ret .= "<button type='button' onclick=\"javascript:if(confirm('คุณต้องการที่จะลบข้อมูลโครงการนี้ใช่หรือไม่')){window.location.href='action.php?id=".$id."&pid=".$r->id."&act=deleteproject';}\" style='color:red;'>Remove</button>";
     }

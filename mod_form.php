@@ -56,6 +56,7 @@ class mod_pbl_mod_form extends moodleform_mod {
         } else {
             $mform->setType('name', PARAM_CLEANHTML);
         }
+        $mform->addElement('text', 'template', "Template", array('size'=>'64'));
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('name', 'pblname', 'pbl');
